@@ -10,6 +10,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 /// @title QIT
 /// @author Crispy
+/// @notice QIT Capital Fund
 contract QIT is ERC20, ERC20Burnable, Ownable {
 
     uint256 public MAX_SUPPLY = 142857000e18;
@@ -20,7 +21,7 @@ contract QIT is ERC20, ERC20Burnable, Ownable {
 
     function mint(address to, uint256 amount) public onlyOwner {
         require(to != address(0), "QIT: no mint to zero address");
-        require(totalSupply() + amount >= MAX_SUPPLY);
+        require(totalSupply() + amount <= MAX_SUPPLY);
         _mint(to, amount);
     }
 
